@@ -26,6 +26,7 @@ dev = [
 
 [project.scripts]
 macro-graph-daily = "macro_graph.jobs.daily_job:main"
+macro-graph-web = "macro_graph.web.server:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/macro_graph"]

@@ -52,6 +52,7 @@ macro_graph/
 │   ├── analysis/               # returns, rates, correlations, regimes
 │   ├── graph/                  # curated NetworkX graph export
 │   ├── reports/                # evidence packet + Markdown renderer
+│   ├── web/                    # local dashboard + read-only artifact APIs
 │   └── jobs/                   # daily pipeline entry point
 ├── tests/
 └── output/
@@ -314,6 +315,10 @@ An inference requires declared evidence IDs, a rule ID, confidence, counterevide
 - Observability: structured logs, stage duration, row counts, last-success timestamp, freshness, retries, and report quality status.
 - Backups: periodic SQLite online backup plus config/graph source under Git.
 - No automatic orders, broker credentials, or trading actions.
+
+### Local dashboard
+
+The optional local dashboard is a read-only projection of artifacts already produced by the daily pipeline. It serves `/api/snapshot`, `/api/report`, `/api/graph`, and `/api/health` plus a dependency-free responsive frontend. It does not fetch market data, mutate research records, or execute the daily job from the browser. This keeps collection failures and browser exposure outside the analytical truth path.
 
 ## 14. Testing strategy
 

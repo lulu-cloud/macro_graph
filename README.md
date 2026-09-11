@@ -27,6 +27,14 @@ To regenerate from already stored data without network access:
 python -m macro_graph.jobs.daily_job --date 2026-09-10 --skip-collect
 ```
 
+Start the local research dashboard:
+
+```bash
+python -m macro_graph.web.server
+```
+
+Then open [http://127.0.0.1:8765](http://127.0.0.1:8765). The dashboard reads the latest generated snapshot, report, and graph directly from `output/`.
+
 ## MVP status
 
 - Official FRED CSV and replaceable yfinance market adapters
@@ -35,6 +43,7 @@ python -m macro_graph.jobs.daily_job --date 2026-09-10 --skip-collect
 - Rule-based regimes with insufficient-evidence fallbacks
 - NetworkX JSON/GraphML causal graph
 - Daily snapshot and ten-section Markdown report
+- Local responsive dashboard with market overview, report reader, correlations, relative strength, and an interactive causal graph
 
 Known MVP limits are printed inside every snapshot/report: true FRED vintage replay, a licensed market-data SLA, economic calendar, FedWatch, ETF flows, software ETF coverage, SEC filings, news, and options remain post-MVP work.
 

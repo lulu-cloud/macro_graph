@@ -72,3 +72,57 @@ relationships:
     confidence: 0.85
     reason: Larger AI clusters increase high-speed interconnect and optical requirements.
     source_reference: curated:industry-guide:optical
+
+  - source: OPENAI
+    target: AI_CAPEX
+    relationship: ecosystem_compute_demand
+    direction: positive
+    strength: 0.7
+    confidence: 0.7
+    reason: Frontier model development contributes to cloud compute and infrastructure demand.
+    source_reference: curated:industry-guide:model-ecosystem
+
+  - source: GPU_DEMAND
+    target: NVDA
+    relationship: accelerator_revenue_exposure
+    direction: positive
+    strength: 0.9
+    confidence: 0.9
+    reason: Nvidia is a primary supplier of datacenter GPU accelerators.
+    source_reference: curated:industry-guide:gpu
+
+  - source: ASIC_DEMAND
+    target: AVGO
+    relationship: custom_accelerator_exposure
+    direction: positive
+    strength: 0.85
+    confidence: 0.85
+    reason: Broadcom participates in custom AI accelerator and networking programs.
+    source_reference: curated:industry-guide:asic
+
+  - source: HBM_DRAM_DEMAND
+    target: MU
+    relationship: memory_revenue_exposure
+    direction: positive
+    strength: 0.85
+    confidence: 0.85
+    reason: Micron supplies DRAM and HBM products used in AI infrastructure.
+    source_reference: curated:industry-guide:memory
+
+  - source: DATACENTER_OPTICAL_DEMAND
+    target: LITE
+    relationship: optical_component_exposure
+    direction: positive
+    strength: 0.85
+    confidence: 0.85
+    reason: Lumentum supplies optical components used in high-speed datacenter connectivity.
+    source_reference: curated:industry-guide:optical
+
+  - source: DATACENTER_OPTICAL_DEMAND
+    target: GLW
+    relationship: optical_fiber_exposure
+    direction: positive
+    strength: 0.65
+    confidence: 0.7
+    reason: Corning supplies optical fiber and connectivity products used in datacenter infrastructure.
+    source_reference: curated:industry-guide:optical-fiber

@@ -56,6 +56,7 @@ def main(argv: list[str] | None = None) -> int:
     database = Database(settings.database_path)
     database.initialize()
     database.sync_assets(assets)
+    snapshot_path = settings.output_dir / "snapshots" / f"market_snapshot_{run_date:%Y%m%d}.json"
 
     lock_path = settings.project_root / "data" / ".daily_job.lock"
     with _RunLock(lock_path):
@@ -90,12 +91,12 @@ def main(argv: list[str] | None = None) -> int:
                 LOGGER.exception("Market collection failed")
                 provider_status["yfinance"] = {"status": "ERROR", "error": str(exc)}
         else:
+            if snapshot_path.exists():
+                previous = json.loads(snapshot_path.read_text(encoding="utf-8"))
+                provider_status.update(previous.get("run", {}).get("provider_status", {}))
             provider_status["collection"] = {"status": "SKIPPED", "reason": "--skip-collect"}
 
         snapshot = build_snapshot(database, run_date, as_of, config_hash, provider_status)
-        snapshot_path = (
-            settings.output_dir / "snapshots" / f"market_snapshot_{run_date:%Y%m%d}.json"
-        )
         _atomic_json(snapshot_path, snapshot)
         database.save_snapshot(run_date, as_of, snapshot["run"]["status"], config_hash, snapshot)
 

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Macro Graph 本地宏观与科技产业研究仪表盘" />
+    <title>Macro Graph · Research Desk</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">MG</div>
+        <div><strong>Macro Graph</strong><span>Research Desk</span></div>
+      </div>
+      <nav class="view-tabs" aria-label="页面视图">
+        <button class="tab active" data-view="overview">市场总览</button>
+        <button class="tab" data-view="graph">因果图谱</button>
+        <button class="tab" data-view="report">每日报告</button>
+      </nav>
+      <div class="asof"><span class="status-dot"></span><span id="asof">正在读取数据…</span></div>
+    </header>
+
+    <main>
+      <section id="overview-view" class="view active">
+        <div class="headline-grid">
+          <article class="regime-card panel">
+            <div class="eyebrow">CURRENT REGIME</div>
+            <h1 id="regime-name">—</h1>
+            <p id="regime-reason">等待数据</p>
+            <div id="regime-score" class="confidence"></div>
+          </article>
+          <article class="quality-card panel">
+            <div class="eyebrow">DATA QUALITY</div>
+            <div class="quality-score"><strong id="quality-state">—</strong><span id="provider-count"></span></div>
+            <p id="quality-note">正在检查数据完整性。</p>
+          </article>
+        </div>
+
+        <section aria-labelledby="rates-title">
+          <div class="section-heading"><div><span class="kicker">POLICY TRANSMISSION</span><h2 id="rates-title">利率与美元</h2></div></div>
+          <div id="macro-cards" class="metric-grid"></div>
+        </section>
+
+        <section aria-labelledby="market-title">
+          <div class="section-heading"><div><span class="kicker">CROSS ASSET</span><h2 id="market-title">资产表现</h2></div><span class="legend"><i class="up"></i>上涨 <i class="down"></i>下跌</span></div>
+          <div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>资产</th><th>价格</th><th>1D</th><th>5D</th><th>20D</th><th>量比</th><th>20D Z</th></tr></thead><tbody id="market-table"></tbody></table></div></div>
+        </section>
+
+        <section class="bottom-grid">
+          <article class="panel"><div class="section-heading compact"><div><span class="kicker">RELATIVE STRENGTH</span><h2>科技公司 / Nasdaq</h2></div></div><div id="relative-bars" class="bar-list"></div></article>
+          <article class="panel"><div class="section-heading compact"><div><span class="kicker">RELATIONSHIP CHECK</span><h2>20 日相关性</h2></div></div><div id="correlation-list" class="correlation-list"></div><p class="caveat">相关性仅用于验证，不代表因果关系。</p></article>
+        </section>
+      </section>
+
+      <section id="graph-view" class="view">
+        <div class="view-title"><div><span class="kicker">CAUSAL KNOWLEDGE GRAPH</span><h1>从宏观变量到公司</h1><p>点击节点查看关系；滚轮缩放，拖动画布。</p></div><div id="graph-filters" class="filters"><button class="filter active" data-filter="all">全部</button><button class="filter" data-filter="macro">宏观</button><button class="filter" data-filter="industry">AI 产业</button></div></div>
+        <div class="graph-layout"><div class="panel graph-canvas-wrap"><svg id="graph-canvas" role="img" aria-label="宏观产业因果关系图"></svg></div><aside id="node-detail" class="panel node-detail"><span class="kicker">SELECTED NODE</span><h2>选择一个节点</h2><p>查看它如何影响下游资产与公司。</p></aside></div>
+      </section>
+
+      <section id="report-view" class="view">
+        <div class="view-title"><div><span class="kicker">DAILY EVIDENCE BRIEF</span><h1 id="report-date">每日报告</h1><p>事实、观察、推断与假设保持分层。</p></div></div>
+        <article id="report-content" class="panel report"></article>
+      </section>
+
+      <section id="empty-state" class="empty-state" hidden><h1>还没有可展示的数据</h1><p>先运行 <code>python -m macro_graph.jobs.daily_job</code>，然后刷新本页。</p></section>
+    </main>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
