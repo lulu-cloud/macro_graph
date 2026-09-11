@@ -1,0 +1,12 @@
+database_url: sqlite:///data/macro_graph.sqlite3
+output_dir: output
+report_timezone: America/New_York
+local_timezone: Asia/Shanghai
+required_assets: [FED_FUNDS_EFFECTIVE, US02Y, US10Y, US_REAL_YIELD_10Y, US_BREAKEVEN_10Y]
+provider_timeout_seconds: 20
+provider_max_retries: 3
+market_provider: yfinance
+fedwatch_provider: unavailable
+
+# Secrets are read from environment variables when adapters are implemented:
+# FRED_API_KEY, BLS_API_KEY, BEA_API_KEY, EIA_API_KEY, SEC_CONTACT_EMAIL.

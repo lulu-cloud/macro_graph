@@ -1,0 +1,31 @@
+schema_version: 1
+
+assets:
+  - {id: FED_FUNDS_EFFECTIVE, name: Effective Federal Funds Rate, asset_class: rate, fred: DFF}
+  - {id: US02Y, name: US Treasury 2-Year Par Yield, asset_class: rate, fred: DGS2, treasury_tenor: 2 Yr}
+  - {id: US10Y, name: US Treasury 10-Year Par Yield, asset_class: rate, fred: DGS10, treasury_tenor: 10 Yr}
+  - {id: US_REAL_YIELD_10Y, name: 10-Year TIPS Constant Maturity, asset_class: rate, fred: DFII10}
+  - {id: US_BREAKEVEN_10Y, name: 10-Year Breakeven Inflation Rate, asset_class: rate, fred: T10YIE}
+  - {id: DXY, name: US Dollar Index, asset_class: fx, market_symbol: DX-Y.NYB, proxy: true}
+  - {id: GOLD, name: COMEX Gold Futures Proxy, asset_class: commodity, market_symbol: GC=F, proxy: true}
+  - {id: BRENT, name: Brent Futures Proxy, asset_class: commodity, market_symbol: BZ=F, proxy: true}
+  - {id: SP500, name: S&P 500 Index, asset_class: equity_index, market_symbol: ^GSPC}
+  - {id: NASDAQ, name: Nasdaq Composite, asset_class: equity_index, market_symbol: ^IXIC}
+  - {id: SOXX, name: iShares Semiconductor ETF, asset_class: equity_etf, market_symbol: SOXX}
+  - {id: NVDA, name: NVIDIA, asset_class: public_equity, market_symbol: NVDA}
+  - {id: AVGO, name: Broadcom, asset_class: public_equity, market_symbol: AVGO}
+  - {id: MU, name: Micron Technology, asset_class: public_equity, market_symbol: MU}
+  - {id: SNDK, name: Sandisk, asset_class: public_equity, market_symbol: SNDK}
+  - {id: INTC, name: Intel, asset_class: public_equity, market_symbol: INTC}
+  - {id: LITE, name: Lumentum Holdings, asset_class: public_equity, market_symbol: LITE}
+  - {id: GLW, name: Corning, asset_class: public_equity, market_symbol: GLW}
+
+non_market_nodes:
+  - {id: FED_HAWKISHNESS, name: Fed Hawkishness, node_type: policy}
+  - {id: INFLATION, name: Inflation, node_type: macro_indicator}
+  - {id: AI_CAPEX, name: AI Capex, node_type: industry_demand}
+  - {id: GPU_DEMAND, name: GPU Demand, node_type: industry_segment}
+  - {id: ASIC_DEMAND, name: ASIC Demand, node_type: industry_segment}
+  - {id: HBM_DRAM_DEMAND, name: HBM and DRAM Demand, node_type: industry_segment}
+  - {id: DATACENTER_OPTICAL_DEMAND, name: Datacenter Optical Demand, node_type: industry_segment}
+  - {id: OPENAI, name: OpenAI, node_type: private_company, public_status: private}

@@ -1,0 +1,74 @@
+schema_version: 1
+
+relationships:
+  - source: FED_HAWKISHNESS
+    target: US02Y
+    relationship: policy_path_repricing
+    direction: positive
+    strength: 0.9
+    confidence: 0.9
+    reason: Two-year yields are highly sensitive to the expected policy-rate path.
+    source_reference: curated:macro-guide:fed-rates
+
+  - source: US_REAL_YIELD_10Y
+    target: GOLD
+    relationship: opportunity_cost_pressure
+    direction: negative
+    strength: 0.8
+    confidence: 0.9
+    reason: Higher real yields raise the opportunity cost of holding a non-yielding asset.
+    source_reference: curated:macro-guide:gold-real-yield
+
+  - source: DXY
+    target: GOLD
+    relationship: dollar_translation_pressure
+    direction: negative
+    strength: 0.6
+    confidence: 0.75
+    reason: A stronger dollar often raises the local-currency cost of dollar-priced gold.
+    source_reference: curated:macro-guide:dollar-gold
+
+  - source: BRENT
+    target: INFLATION
+    relationship: energy_input_pressure
+    direction: positive
+    strength: 0.6
+    confidence: 0.8
+    reason: Higher oil prices can raise headline inflation and production costs, conditional on shock type.
+    source_reference: curated:macro-guide:oil-inflation
+
+  - source: AI_CAPEX
+    target: GPU_DEMAND
+    relationship: infrastructure_demand
+    direction: positive
+    strength: 0.9
+    confidence: 0.9
+    reason: AI compute investment increases accelerator demand.
+    source_reference: curated:industry-guide:ai-hardware
+
+  - source: AI_CAPEX
+    target: ASIC_DEMAND
+    relationship: custom_compute_demand
+    direction: positive
+    strength: 0.8
+    confidence: 0.85
+    reason: Hyperscaler AI investment supports custom accelerator programs.
+    source_reference: curated:industry-guide:ai-hardware
+
+  - source: AI_CAPEX
+    target: HBM_DRAM_DEMAND
+    relationship: memory_content_demand
+    direction: positive
+    strength: 0.85
+    confidence: 0.85
+    reason: AI accelerators and servers require high memory bandwidth and capacity.
+    source_reference: curated:industry-guide:memory
+
+  - source: AI_CAPEX
+    target: DATACENTER_OPTICAL_DEMAND
+    relationship: cluster_connectivity_demand
+    direction: positive
+    strength: 0.8
+    confidence: 0.85
+    reason: Larger AI clusters increase high-speed interconnect and optical requirements.
+    source_reference: curated:industry-guide:optical
