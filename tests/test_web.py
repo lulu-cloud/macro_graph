@@ -39,6 +39,18 @@ class DashboardDataTests(unittest.TestCase):
             data = DashboardData(output, root)
             self.assertEqual(data.manual()["content"], "# 中文说明书")
 
+    def test_reads_shared_chinese_glossary(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            output = root / "output"
+            (root / "config").mkdir()
+            (root / "config" / "glossary.zh-CN.json").write_text(
+                json.dumps({"schema_version": 1, "terms": [{"key": "DXY"}]}),
+                encoding="utf-8",
+            )
+            data = DashboardData(output, root)
+            self.assertEqual(data.glossary()["terms"][0]["key"], "DXY")
+
     def test_empty_state_is_explicit(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             data = DashboardData(Path(directory))
@@ -46,3 +58,4 @@ class DashboardDataTests(unittest.TestCase):
             self.assertEqual(data.report()["error"], "NO_REPORT")
             self.assertEqual(data.graph()["error"], "NO_GRAPH")
             self.assertEqual(data.manual()["error"], "NO_MANUAL")
+            self.assertEqual(data.glossary()["error"], "NO_GLOSSARY")

@@ -52,6 +52,12 @@ class DashboardData:
             return {"error": "NO_MANUAL", "content": "暂无中文说明书。"}
         return {"title": "中文手工研究说明书", "content": path.read_text(encoding="utf-8")}
 
+    def glossary(self) -> dict:
+        path = self.project_root / "config" / "glossary.zh-CN.json"
+        if not path.exists():
+            return {"error": "NO_GLOSSARY", "terms": []}
+        return json.loads(path.read_text(encoding="utf-8"))
+
 
 def make_handler(data: DashboardData):
     class DashboardHandler(BaseHTTPRequestHandler):
@@ -73,6 +79,9 @@ def make_handler(data: DashboardData):
                 return
             if route == "/api/manual":
                 self._send_json(data.manual())
+                return
+            if route == "/api/glossary":
+                self._send_json(data.glossary())
                 return
             self._send_static(route)
 

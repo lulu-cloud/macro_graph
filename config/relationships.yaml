@@ -8,6 +8,7 @@ relationships:
     strength: 0.9
     confidence: 0.9
     reason: Two-year yields are highly sensitive to the expected policy-rate path.
+    reason_zh: 2 年期收益率对未来政策利率路径最敏感。
     source_reference: curated:macro-guide:fed-rates
 
   - source: US_REAL_YIELD_10Y
@@ -17,6 +18,7 @@ relationships:
     strength: 0.8
     confidence: 0.9
     reason: Higher real yields raise the opportunity cost of holding a non-yielding asset.
+    reason_zh: 实际利率上升会提高持有无息黄金的机会成本。
     source_reference: curated:macro-guide:gold-real-yield
 
   - source: DXY
@@ -26,6 +28,7 @@ relationships:
     strength: 0.6
     confidence: 0.75
     reason: A stronger dollar often raises the local-currency cost of dollar-priced gold.
+    reason_zh: 美元走强通常会提高非美元投资者购买美元计价黄金的成本。
     source_reference: curated:macro-guide:dollar-gold
 
   - source: BRENT
@@ -35,6 +38,7 @@ relationships:
     strength: 0.6
     confidence: 0.8
     reason: Higher oil prices can raise headline inflation and production costs, conditional on shock type.
+    reason_zh: 油价上涨可能推高总体通胀和生产成本，但影响取决于需求还是供给冲击。
     source_reference: curated:macro-guide:oil-inflation
 
   - source: AI_CAPEX
@@ -44,6 +48,7 @@ relationships:
     strength: 0.9
     confidence: 0.9
     reason: AI compute investment increases accelerator demand.
+    reason_zh: AI 算力投资会增加加速器需求。
     source_reference: curated:industry-guide:ai-hardware
 
   - source: AI_CAPEX
@@ -53,6 +58,7 @@ relationships:
     strength: 0.8
     confidence: 0.85
     reason: Hyperscaler AI investment supports custom accelerator programs.
+    reason_zh: 超大规模云厂商的 AI 投资会支持定制加速器项目。
     source_reference: curated:industry-guide:ai-hardware
 
   - source: AI_CAPEX
@@ -62,6 +68,7 @@ relationships:
     strength: 0.85
     confidence: 0.85
     reason: AI accelerators and servers require high memory bandwidth and capacity.
+    reason_zh: AI 加速器和服务器需要更高的内存带宽与容量。
     source_reference: curated:industry-guide:memory
 
   - source: AI_CAPEX
@@ -71,6 +78,7 @@ relationships:
     strength: 0.8
     confidence: 0.85
     reason: Larger AI clusters increase high-speed interconnect and optical requirements.
+    reason_zh: AI 集群规模扩大，会增加高速互连与光通信需求。
     source_reference: curated:industry-guide:optical
 
   - source: OPENAI
@@ -80,6 +88,7 @@ relationships:
     strength: 0.7
     confidence: 0.7
     reason: Frontier model development contributes to cloud compute and infrastructure demand.
+    reason_zh: 前沿模型开发会增加云算力和基础设施需求。
     source_reference: curated:industry-guide:model-ecosystem
 
   - source: GPU_DEMAND
@@ -89,6 +98,7 @@ relationships:
     strength: 0.9
     confidence: 0.9
     reason: Nvidia is a primary supplier of datacenter GPU accelerators.
+    reason_zh: 英伟达是数据中心 GPU 加速器的主要供应商。
     source_reference: curated:industry-guide:gpu
 
   - source: ASIC_DEMAND
@@ -98,6 +108,7 @@ relationships:
     strength: 0.85
     confidence: 0.85
     reason: Broadcom participates in custom AI accelerator and networking programs.
+    reason_zh: 博通参与定制 AI 加速器和数据中心网络项目。
     source_reference: curated:industry-guide:asic
 
   - source: HBM_DRAM_DEMAND
@@ -107,6 +118,7 @@ relationships:
     strength: 0.85
     confidence: 0.85
     reason: Micron supplies DRAM and HBM products used in AI infrastructure.
+    reason_zh: 美光供应 AI 基础设施使用的 DRAM 和 HBM 产品。
     source_reference: curated:industry-guide:memory
 
   - source: DATACENTER_OPTICAL_DEMAND
@@ -116,6 +128,7 @@ relationships:
     strength: 0.85
     confidence: 0.85
     reason: Lumentum supplies optical components used in high-speed datacenter connectivity.
+    reason_zh: Lumentum 供应高速数据中心连接使用的光通信器件。
     source_reference: curated:industry-guide:optical
 
   - source: DATACENTER_OPTICAL_DEMAND
@@ -125,4 +138,5 @@ relationships:
     strength: 0.65
     confidence: 0.7
     reason: Corning supplies optical fiber and connectivity products used in datacenter infrastructure.
+    reason_zh: 康宁供应数据中心基础设施使用的光纤和连接产品。
     source_reference: curated:industry-guide:optical-fiber

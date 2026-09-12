@@ -45,6 +45,7 @@ Then open [http://127.0.0.1:8765](http://127.0.0.1:8765). The dashboard reads th
 - NetworkX JSON/GraphML causal graph
 - Daily snapshot and ten-section Markdown report
 - Local responsive dashboard with market overview, report reader, correlations, relative strength, and an interactive causal graph
+- Shared Chinese glossary with inline `?` explanations, common pitfalls, authoritative links, and searchable manual cards
 
 Known MVP limits are printed inside every snapshot/report: true FRED vintage replay, a licensed market-data SLA, economic calendar, FedWatch, ETF flows, software ETF coverage, SEC filings, news, and options remain post-MVP work.
 

@@ -26,50 +26,51 @@
       <section id="overview-view" class="view active">
         <div class="headline-grid">
           <article class="regime-card panel">
-            <div class="eyebrow">CURRENT REGIME</div>
+            <div class="eyebrow">当前市场环境</div>
             <h1 id="regime-name">—</h1>
             <p id="regime-reason">等待数据</p>
             <div id="regime-score" class="confidence"></div>
           </article>
           <article class="quality-card panel">
-            <div class="eyebrow">DATA QUALITY</div>
+            <div class="eyebrow">数据质量</div>
             <div class="quality-score"><strong id="quality-state">—</strong><span id="provider-count"></span></div>
             <p id="quality-note">正在检查数据完整性。</p>
           </article>
         </div>
 
         <section aria-labelledby="rates-title">
-          <div class="section-heading"><div><span class="kicker">POLICY TRANSMISSION</span><h2 id="rates-title">利率与美元</h2></div></div>
+          <div class="section-heading"><div><span class="kicker">政策传导</span><h2 id="rates-title">利率与美元</h2></div></div>
           <div id="macro-cards" class="metric-grid"></div>
         </section>
 
         <section aria-labelledby="market-title">
-          <div class="section-heading"><div><span class="kicker">CROSS ASSET</span><h2 id="market-title">资产表现</h2></div><span class="legend"><i class="up"></i>上涨 <i class="down"></i>下跌</span></div>
+          <div class="section-heading"><div><span class="kicker">跨资产</span><h2 id="market-title">资产表现</h2></div><span class="legend"><i class="up"></i>上涨 <i class="down"></i>下跌</span></div>
           <div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>资产</th><th>价格</th><th>1D</th><th>5D</th><th>20D</th><th>量比</th><th>20D Z</th></tr></thead><tbody id="market-table"></tbody></table></div></div>
         </section>
 
         <section class="bottom-grid">
-          <article class="panel"><div class="section-heading compact"><div><span class="kicker">RELATIVE STRENGTH</span><h2>科技公司 / Nasdaq</h2></div></div><div id="relative-bars" class="bar-list"></div></article>
-          <article class="panel"><div class="section-heading compact"><div><span class="kicker">RELATIONSHIP CHECK</span><h2>20 日相关性</h2></div></div><div id="correlation-list" class="correlation-list"></div><p class="caveat">相关性仅用于验证，不代表因果关系。</p></article>
+          <article class="panel"><div class="section-heading compact"><div><span class="kicker">相对强弱</span><h2>科技公司 / Nasdaq</h2></div></div><div id="relative-bars" class="bar-list"></div></article>
+          <article class="panel"><div class="section-heading compact"><div><span class="kicker">关系验证</span><h2>20 日相关性</h2></div></div><div id="correlation-list" class="correlation-list"></div><p class="caveat">相关性仅用于验证，不代表因果关系。</p></article>
         </section>
       </section>
 
       <section id="graph-view" class="view">
-        <div class="view-title"><div><span class="kicker">CAUSAL KNOWLEDGE GRAPH</span><h1>从宏观变量到公司</h1><p>点击节点查看关系；滚轮缩放，拖动画布。</p></div><div id="graph-filters" class="filters"><button class="filter active" data-filter="all">全部</button><button class="filter" data-filter="macro">宏观</button><button class="filter" data-filter="industry">AI 产业</button></div></div>
-        <div class="graph-layout"><div class="panel graph-canvas-wrap"><svg id="graph-canvas" role="img" aria-label="宏观产业因果关系图"></svg></div><aside id="node-detail" class="panel node-detail"><span class="kicker">SELECTED NODE</span><h2>选择一个节点</h2><p>查看它如何影响下游资产与公司。</p></aside></div>
+        <div class="view-title"><div><span class="kicker">因果知识图谱</span><h1>从宏观变量到公司</h1><p>点击节点查看关系；滚轮缩放，拖动画布。</p></div><div id="graph-filters" class="filters"><button class="filter active" data-filter="all">全部</button><button class="filter" data-filter="macro">宏观</button><button class="filter" data-filter="industry">AI 产业</button></div></div>
+        <div class="graph-layout"><div class="panel graph-canvas-wrap"><svg id="graph-canvas" role="img" aria-label="宏观产业因果关系图"></svg></div><aside id="node-detail" class="panel node-detail"><span class="kicker">当前节点</span><h2>选择一个节点</h2><p>查看它如何影响下游资产与公司。</p></aside></div>
       </section>
 
       <section id="report-view" class="view">
-        <div class="view-title"><div><span class="kicker">DAILY EVIDENCE BRIEF</span><h1 id="report-date">每日报告</h1><p>事实、观察、推断与假设保持分层。</p></div></div>
+        <div class="view-title"><div><span class="kicker">每日证据简报</span><h1 id="report-date">每日报告</h1><p>事实、观察、推断与假设保持分层。</p></div></div>
         <article id="report-content" class="panel report"></article>
       </section>
 
       <section id="manual-view" class="view">
-        <div class="view-title manual-title"><div><span class="kicker">HOW TO USE THIS DESK</span><h1>中文手工研究说明书</h1><p>先读懂页面，再按官网点击路径完成一轮可复核研究。</p></div><nav class="manual-shortcuts" aria-label="说明书快捷入口"><a href="#manual-page-guide">网页怎么看</a><a href="#manual-daily-flow">每日流程</a><a href="#manual-event-days">事件日</a><a href="#manual-ai-research">AI 产业</a></nav></div>
+        <div class="view-title manual-title"><div><span class="kicker">使用指南</span><h1>中文手工研究说明书</h1><p>先读懂页面，再按官网点击路径完成一轮可复核研究。</p></div><nav class="manual-shortcuts" aria-label="说明书快捷入口"><a href="#manual-page-guide">网页怎么看</a><a href="#manual-daily-flow">每日流程</a><a href="#manual-event-days">事件日</a><a href="#manual-ai-research">AI 产业</a><a href="#manual-glossary">术语词典</a></nav></div>
         <div class="manual-layout">
           <aside class="panel manual-start">
             <span class="kicker">第一次使用</span>
             <ol>
+              <li>看到英文或缩写，先悬浮或点击旁边的 ?。</li>
               <li>先看 DATA QUALITY，再看 REGIME。</li>
               <li>按 2Y → 10Y → 实际利率 → DXY 阅读。</li>
               <li>用相对强弱验证行业表现。</li>
@@ -77,12 +78,13 @@
             </ol>
             <p>记住：股价上涨不等于资金净流入；相关性不等于因果。</p>
           </aside>
-          <article id="manual-content" class="panel manual-document"><p>正在读取中文说明书…</p></article>
+          <article class="panel manual-document"><div id="manual-content"><p>正在读取中文说明书…</p></div><section id="manual-glossary" class="manual-glossary" aria-labelledby="glossary-title"><h2 id="glossary-title">十三、网页术语词典</h2><p>输入英文、缩写或中文含义进行查找。这里和页面问号使用同一份定义。</p><label class="glossary-search"><span>查找术语</span><input id="glossary-search" type="search" placeholder="例如：DXY、实际利率、英伟达" autocomplete="off" /></label><div id="glossary-count" class="caveat"></div><div id="glossary-list" class="glossary-list"></div></section></article>
         </div>
       </section>
 
       <section id="empty-state" class="empty-state" hidden><h1>还没有可展示的数据</h1><p>先运行 <code>python -m macro_graph.jobs.daily_job</code>，然后刷新本页。</p></section>
     </main>
+    <aside id="term-popover" class="term-popover" role="dialog" aria-live="polite" hidden></aside>
     <script src="/app.js" defer></script>
   </body>
 </html>

@@ -38,6 +38,7 @@ def build_graph(asset_config: dict, relationship_config: dict) -> nx.MultiDiGrap
             strength=float(edge["strength"]),
             confidence=float(edge["confidence"]),
             reason=edge["reason"],
+            reason_zh=edge.get("reason_zh", edge["reason"]),
             source_reference=edge["source_reference"],
         )
     return graph
