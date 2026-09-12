@@ -28,9 +28,21 @@ class DashboardDataTests(unittest.TestCase):
             self.assertEqual(data.report()["date"], "2026-01-02")
             self.assertEqual(data.graph()["nodes"], [])
 
+    def test_reads_chinese_manual(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            output = root / "output"
+            (root / "docs").mkdir()
+            (root / "docs" / "MANUAL_RESEARCH_GUIDE_ZH.md").write_text(
+                "# 中文说明书", encoding="utf-8"
+            )
+            data = DashboardData(output, root)
+            self.assertEqual(data.manual()["content"], "# 中文说明书")
+
     def test_empty_state_is_explicit(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             data = DashboardData(Path(directory))
             self.assertEqual(data.snapshot()["error"], "NO_SNAPSHOT")
             self.assertEqual(data.report()["error"], "NO_REPORT")
             self.assertEqual(data.graph()["error"], "NO_GRAPH")
+            self.assertEqual(data.manual()["error"], "NO_MANUAL")

@@ -16,8 +16,9 @@ STATIC_DIR = Path(__file__).with_name("static")
 
 
 class DashboardData:
-    def __init__(self, output_dir: Path) -> None:
+    def __init__(self, output_dir: Path, project_root: Path | None = None) -> None:
         self.output_dir = output_dir
+        self.project_root = project_root or output_dir.parent
 
     def latest_snapshot_path(self) -> Path | None:
         candidates = sorted((self.output_dir / "snapshots").glob("market_snapshot_*.json"))
@@ -45,6 +46,12 @@ class DashboardData:
             return {"error": "NO_GRAPH", "message": "暂无图谱。"}
         return json.loads(path.read_text(encoding="utf-8"))
 
+    def manual(self) -> dict:
+        path = self.project_root / "docs" / "MANUAL_RESEARCH_GUIDE_ZH.md"
+        if not path.exists():
+            return {"error": "NO_MANUAL", "content": "暂无中文说明书。"}
+        return {"title": "中文手工研究说明书", "content": path.read_text(encoding="utf-8")}
+
 
 def make_handler(data: DashboardData):
     class DashboardHandler(BaseHTTPRequestHandler):
@@ -63,6 +70,9 @@ def make_handler(data: DashboardData):
                 return
             if route == "/api/graph":
                 self._send_json(data.graph())
+                return
+            if route == "/api/manual":
+                self._send_json(data.manual())
                 return
             self._send_static(route)
 
@@ -110,7 +120,8 @@ def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     settings = Settings.load()
     server = ThreadingHTTPServer(
-        (args.host, args.port), make_handler(DashboardData(settings.output_dir))
+        (args.host, args.port),
+        make_handler(DashboardData(settings.output_dir, settings.project_root)),
     )
     print(f"Macro Graph dashboard: http://{args.host}:{server.server_port}", flush=True)
     try:

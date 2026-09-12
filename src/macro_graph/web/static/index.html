@@ -17,6 +17,7 @@
         <button class="tab active" data-view="overview">市场总览</button>
         <button class="tab" data-view="graph">因果图谱</button>
         <button class="tab" data-view="report">每日报告</button>
+        <button class="tab" data-view="manual">使用说明</button>
       </nav>
       <div class="asof"><span class="status-dot"></span><span id="asof">正在读取数据…</span></div>
     </header>
@@ -61,6 +62,23 @@
       <section id="report-view" class="view">
         <div class="view-title"><div><span class="kicker">DAILY EVIDENCE BRIEF</span><h1 id="report-date">每日报告</h1><p>事实、观察、推断与假设保持分层。</p></div></div>
         <article id="report-content" class="panel report"></article>
+      </section>
+
+      <section id="manual-view" class="view">
+        <div class="view-title manual-title"><div><span class="kicker">HOW TO USE THIS DESK</span><h1>中文手工研究说明书</h1><p>先读懂页面，再按官网点击路径完成一轮可复核研究。</p></div><nav class="manual-shortcuts" aria-label="说明书快捷入口"><a href="#manual-page-guide">网页怎么看</a><a href="#manual-daily-flow">每日流程</a><a href="#manual-event-days">事件日</a><a href="#manual-ai-research">AI 产业</a></nav></div>
+        <div class="manual-layout">
+          <aside class="panel manual-start">
+            <span class="kicker">第一次使用</span>
+            <ol>
+              <li>先看 DATA QUALITY，再看 REGIME。</li>
+              <li>按 2Y → 10Y → 实际利率 → DXY 阅读。</li>
+              <li>用相对强弱验证行业表现。</li>
+              <li>最后阅读报告中的四层证据。</li>
+            </ol>
+            <p>记住：股价上涨不等于资金净流入；相关性不等于因果。</p>
+          </aside>
+          <article id="manual-content" class="panel manual-document"><p>正在读取中文说明书…</p></article>
+        </div>
       </section>
 
       <section id="empty-state" class="empty-state" hidden><h1>还没有可展示的数据</h1><p>先运行 <code>python -m macro_graph.jobs.daily_job</code>，然后刷新本页。</p></section>

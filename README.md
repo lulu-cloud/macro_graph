@@ -8,6 +8,7 @@ This repository contains a runnable, deliberately small MVP. It collects officia
 
 - [Architecture](ARCHITECTURE.md)
 - [MVP implementation plan](docs/MVP_IMPLEMENTATION_PLAN.md)
+- [中文手工研究说明书](docs/MANUAL_RESEARCH_GUIDE_ZH.md)
 
 ## Bootstrap
 

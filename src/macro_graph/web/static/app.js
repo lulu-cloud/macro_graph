@@ -1,4 +1,4 @@
-const state = { snapshot: null, graph: null, report: null, graphFilter: "all", transform: { x: 0, y: 0, k: 1 } };
+const state = { snapshot: null, graph: null, report: null, manual: null, graphFilter: "all", transform: { x: 0, y: 0, k: 1 } };
 
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
@@ -7,18 +7,19 @@ const cls = (value) => value == null || value === 0 ? "neutral" : value > 0 ? "p
 const safe = (value) => String(value ?? "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
 
 async function loadData() {
-  const [snapshot, graph, report] = await Promise.all([
+  const [snapshot, graph, report, manual] = await Promise.all([
     fetch("/api/snapshot").then(r => r.json()),
     fetch("/api/graph").then(r => r.json()),
     fetch("/api/report").then(r => r.json()),
+    fetch("/api/manual").then(r => r.json()),
   ]);
   if (snapshot.error) {
     $("#overview-view").hidden = true;
     $("#empty-state").hidden = false;
     return;
   }
-  state.snapshot = snapshot; state.graph = graph; state.report = report;
-  renderOverview(); renderGraph(); renderReport();
+  state.snapshot = snapshot; state.graph = graph; state.report = report; state.manual = manual;
+  renderOverview(); renderGraph(); renderReport(); renderManual();
 }
 
 function renderOverview() {
@@ -79,6 +80,52 @@ function renderReport() {
 
 function inlineCode(text) {
   return safe(text).replace(/`([^`]+)`/g, "<code>$1</code>");
+}
+
+function richText(text) {
+  let output = safe(text);
+  output = output.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1 ↗</a>');
+  output = output.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  output = output.replace(/`([^`]+)`/g, "<code>$1</code>");
+  return output;
+}
+
+function renderManual() {
+  if (!state.manual || state.manual.error) {
+    $("#manual-content").innerHTML = "<p>中文说明书暂不可用。</p>";
+    return;
+  }
+  const lines = state.manual.content.split("\n");
+  let html = "", listType = null, inCode = false, codeLines = [];
+  const closeList = () => { if (listType) { html += `</${listType}>`; listType = null; } };
+  lines.forEach(line => {
+    if (line.startsWith("```")) {
+      closeList();
+      if (inCode) { html += `<pre><code>${safe(codeLines.join("\n"))}</code></pre>`; codeLines = []; }
+      inCode = !inCode;
+      return;
+    }
+    if (inCode) { codeLines.push(line); return; }
+    const numbered = line.match(/^\d+\.\s+(.*)$/);
+    const bullet = line.match(/^-\s+(.*)$/);
+    if (numbered || bullet) {
+      const wanted = numbered ? "ol" : "ul";
+      if (listType !== wanted) { closeList(); html += `<${wanted}>`; listType = wanted; }
+      html += `<li>${richText((numbered || bullet)[1])}</li>`;
+      return;
+    }
+    closeList();
+    if (line.startsWith("# ")) return;
+    if (line.startsWith("## ")) {
+      const title = line.slice(3);
+      const anchor = title.includes("先看懂") ? "manual-page-guide" : title.includes("每天 20") ? "manual-daily-flow" : title.includes("CPI 日") ? "manual-event-days" : title.includes("AI 科技") ? "manual-ai-research" : "";
+      html += `<h2${anchor ? ` id="${anchor}"` : ""}>${richText(title)}</h2>`;
+    } else if (line.startsWith("### ")) html += `<h3>${richText(line.slice(4))}</h3>`;
+    else if (line.startsWith("> ")) html += `<blockquote>${richText(line.slice(2))}</blockquote>`;
+    else if (line.trim()) html += `<p>${richText(line.trim())}</p>`;
+  });
+  closeList();
+  $("#manual-content").innerHTML = html;
 }
 
 function renderGraph() {
